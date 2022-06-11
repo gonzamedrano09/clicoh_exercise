@@ -9,7 +9,7 @@ from api.serializers.product_serializers.product_update_stock_serializer import 
 
 class ProductViewSet(viewsets.ModelViewSet):
 
-    queryset = Product.objects.filter(is_deleted=False)
+    queryset = Product.objects.all()
 
     def get_serializer_class(self):
         if self.action in ["create", "retrieve", "list"]:
