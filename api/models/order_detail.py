@@ -7,7 +7,7 @@ class OrderDetail(models.Model):
 
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.PROTECT)
-    cuantity = models.PositiveIntegerField()
+    quantity = models.PositiveIntegerField()
 
     def __str__(self):
         return "%s - %s" % (self.order.__str__(), self.order.__str__())
