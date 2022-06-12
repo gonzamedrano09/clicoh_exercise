@@ -20,4 +20,5 @@ anteriormente y no debería eliminarse físicamente
 
 ### Modelo orden
 
+- Agregar una orden supone establecer al menos un detalle de orden
 - Modificar una order supone reestablecer el stock de los productos de los detalles de orden que van a ser reemplazados 

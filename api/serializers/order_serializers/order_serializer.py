@@ -9,6 +9,9 @@ class OrderSerializer(serializers.ModelSerializer):
     order_details = OrderDetailSerializer(many=True)
 
     def validate_order_details(self, value):
+        if len(value) == 0:
+            raise serializers.ValidationError("At least one order detail is needed.")
+
         products = []
         for order_detail in value:
             product = order_detail.get("product")
