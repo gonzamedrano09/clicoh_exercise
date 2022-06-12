@@ -20,10 +20,14 @@ class OrderSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         order_details_data = validated_data.pop("order_details")
 
+        # Generate order
         order = Order.objects.create(**validated_data)
 
+        # Generate order details
         for order_detail_data in order_details_data:
             order_detail = OrderDetail.objects.create(order=order, **order_detail_data)
+
+            # Reduce the stock of products
             order_detail.product.stock -= order_detail.quantity
             order_detail.product.save()
 

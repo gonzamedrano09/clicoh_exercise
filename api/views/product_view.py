@@ -20,7 +20,9 @@ class ProductViewSet(viewsets.ModelViewSet):
             return ProductUpdateStockSerializer
 
     def perform_destroy(self, instance):
+        # Logical deletion
         instance.is_deleted = True
+
         instance.save()
 
     @action(detail=True, url_path="update-stock", methods=["put", "patch"])

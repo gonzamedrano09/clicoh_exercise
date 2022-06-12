@@ -15,8 +15,12 @@ class OrderViewSet(viewsets.ModelViewSet):
             return OrderUpdateSerializer
 
     def perform_destroy(self, instance):
+        # Increase product stock
         for order_detail in instance.order_details:
             order_detail.product += order_detail.quantity
             order_detail.product.save()
+
+        # Remove order details
         instance.products.clear()
+
         instance.delete()

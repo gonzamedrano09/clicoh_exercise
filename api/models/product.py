@@ -10,8 +10,8 @@ class Product(models.Model):
 
     is_deleted = models.BooleanField(default=False)
 
-    all_objects = models.Manager()
-    objects = ProductManager()
+    all_objects = models.Manager()  # Manager for all products
+    objects = ProductManager()  # Manager for non-removed products
 
     def __str__(self):
         return self.name

@@ -8,7 +8,7 @@ from api.serializers.product_serializers.product_serializer import ProductSerial
 class OrderDetailSerializer(serializers.ModelSerializer):
 
     product = relations.PresentablePrimaryKeyRelatedField(queryset=Product.objects.all(),
-                                                          presentation_serializer=ProductSerializer,)
+                                                          presentation_serializer=ProductSerializer)
 
     def validate_quantity(self, value):
         if value <= 0:
