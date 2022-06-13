@@ -8,6 +8,15 @@ class OrderSerializer(serializers.ModelSerializer):
 
     order_details = OrderDetailSerializer(many=True)
 
+    total = serializers.SerializerMethodField()
+    total_usd = serializers.SerializerMethodField()
+
+    def get_total(self, obj):
+        return obj.get_total
+
+    def get_total_usd(self, obj):
+        return obj.get_total_usd
+
     def validate_order_details(self, value):
         if len(value) == 0:
             raise serializers.ValidationError("At least one order detail is needed.")
@@ -38,4 +47,4 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ["id", "date_time", "order_details"]
+        fields = ["id", "date_time", "order_details", "total", "total_usd"]
