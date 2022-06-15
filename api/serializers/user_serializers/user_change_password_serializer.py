@@ -14,6 +14,7 @@ class UserChangePasswordSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         instance.set_password(validated_data.get("password"))
+        instance.save()
         return instance
 
     class Meta:

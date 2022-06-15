@@ -16,7 +16,7 @@ class UserViewSet(viewsets.GenericViewSet,
                   mixins.DestroyModelMixin):
 
     def get_permissions(self):
-        if self.action in ["create"]:
+        if self.action == "create":
             self.permission_classes = [AllowAny]
         return super(UserViewSet, self).get_permissions()
 
