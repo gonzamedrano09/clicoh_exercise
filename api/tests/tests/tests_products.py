@@ -88,17 +88,20 @@ class ProductTests(APITestCase):
 
     def test_list_products(self):
         other_product = ProductFactory()
-        data = [{
-            "id": self.product.id,
-            "name": self.product.name,
-            "price": self.product.price,
-            "stock": self.product.stock
-        }, {
-            "id": other_product.id,
-            "name": other_product.name,
-            "price": other_product.price,
-            "stock": other_product.stock
-        }]
+        data = [
+            {
+                "id": self.product.id,
+                "name": self.product.name,
+                "price": self.product.price,
+                "stock": self.product.stock
+            },
+            {
+                "id": other_product.id,
+                "name": other_product.name,
+                "price": other_product.price,
+                "stock": other_product.stock
+            }
+        ]
 
         response = self.client.get(reverse("products-list"))
         result = json.loads(response.content)["results"]
