@@ -56,6 +56,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware"
 ]
+if not DEBUG:
+    MIDDLEWARE.append("whitenoise.middleware.WhiteNoiseMiddleware")
 
 ROOT_URLCONF = "clicoh.urls"
 
@@ -91,12 +93,12 @@ if DEBUG:
 else:
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.postgresql_psycopg2",
-            "NAME": env.str("POSTGRES_NAME"),
-            "USER": env.str("POSTGRES_USER"),
-            "PASSWORD": env.str("POSTGRES_PASSWORD"),
-            "HOST": env.str("POSTGRES_HOST"),
-            "PORT": env.str("POSTGRES_POST"),
+            "ENGINE": "django.db.backends.POSTGREql_psycopg2",
+            "NAME": env.str("POSTGRE_NAME"),
+            "USER": env.str("POSTGRE_USER"),
+            "PASSWORD": env.str("POSTGRE_PASSWORD"),
+            "HOST": env.str("POSTGRE_HOST"),
+            "PORT": env.str("POSTGRE_PORT"),
         }
     }
 
@@ -135,7 +137,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = "static/"
+
+STATICFILES_DIR = [os.path.join(BASE_DIR, "static")]
+
+if not DEBUG:
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
