@@ -30,7 +30,7 @@ SECRET_KEY = env.str("SECRET_KEY")
 
 
 # SECURITY WARNING: don"t run with debug turned on in production!
-DEBUG = env.str("DEBUG", default=False)
+DEBUG = env.bool("DEBUG", default=False)
 
 ALLOWED_HOSTS = env.list("HOST", default=["*"])
 
@@ -98,7 +98,7 @@ else:
             "USER": env.str("POSTGRE_USER"),
             "PASSWORD": env.str("POSTGRE_PASSWORD"),
             "HOST": env.str("POSTGRE_HOST"),
-            "PORT": env.str("POSTGRE_PORT"),
+            "PORT": env.int("POSTGRE_PORT"),
         }
     }
 
