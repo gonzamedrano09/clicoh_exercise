@@ -3,7 +3,7 @@ from factory import django, LazyAttribute
 from api.models.product import Product
 
 
-fake = faker.Faker()
+fake = faker.Faker(["en_PH"])
 
 
 class ProductFactory(django.DjangoModelFactory):
