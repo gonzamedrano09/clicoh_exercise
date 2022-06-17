@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 import environ
+import dj_database_url
 from datetime import timedelta
 
 
@@ -92,14 +93,9 @@ if DEBUG:
     }
 else:
     DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql_psycopg2",
-            "NAME": env.str("POSTGRE_NAME"),
-            "USER": env.str("POSTGRE_USER"),
-            "PASSWORD": env.str("POSTGRE_PASSWORD"),
-            "HOST": env.str("POSTGRE_HOST"),
-            "PORT": env.int("POSTGRE_PORT"),
-        }
+        "default": dj_database_url.config(
+            default=env.str("DATABASE_URL")
+        )
     }
 
 
